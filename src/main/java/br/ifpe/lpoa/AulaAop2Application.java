@@ -12,26 +12,30 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @ComponentScan
 public class AulaAop2Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		ApplicationContext applicationContext = SpringApplication.run(AulaAop2Application.class, args);
 
 		Conta ctx = applicationContext.getBean(Conta.class);
 		ContaCorrente cctx = applicationContext.getBean(ContaCorrente.class);
 		Conta c = new Conta("123", 100.0);
 		ContaCorrente cc= new ContaCorrente("123", 100.0);
+//		
+//		for(String name : applicationContext.getBeanDefinitionNames()) {
+//			System.out.println(name);
+//		}
 
 		try {
 			ctx.creditar(100);
 			ctx.debitar(10);
 			
 			cctx.creditar(100);
-			ctx.debitar(10);
-			
-			c.creditar(100);
-			c.debitar(10);
-			
-			cc.creditar(100);
-			cc.debitar(10);
+			cctx.debitar(10);
+//			
+//			c.creditar(100);
+//			c.debitar(10);
+//			
+//			cc.creditar(100);
+//			cc.debitar(10);
 			
 			
 		} catch (BeansException e) {
