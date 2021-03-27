@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 
-@Component(value="Conta")
+@Component(value = "Conta")
 @Primary
 public class Conta {
 
@@ -15,10 +15,9 @@ public class Conta {
 
 	}
 
-	public Conta(String numero, double saldo) {
-		super();
+	public Conta(String numero, double value) {
 		this.numero = numero;
-		this.saldo = saldo;
+		this.saldo = value;
 	}
 
 	public String getNumero() {
@@ -41,15 +40,15 @@ public class Conta {
 		this.saldo = this.saldo + valor;
 		System.out.println(this.saldo);
 	}
-
+	
 	public void debitar(double valor) throws Exception {
 		if ((this.saldo - valor) > 0.0) {
 			this.saldo -= valor;
 		} else {
 			throw new Exception("Saldo Insuficiente!");
-		}
+		}		
 	}
-
+	
 	public void transferir(Conta c, double valor) throws Exception {
 		this.debitar(valor);
 		c.creditar(valor);
