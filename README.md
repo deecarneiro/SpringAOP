@@ -15,6 +15,48 @@ Spring AOP project for AOP college classes. AOP(Aspect Oriented Programming) is 
 
 ## Code Snippets
 
+### 1. Advices
+
+ It is a part of code used as 'advice' for an execution from another of code;
+
+ - 1.1 Before: executed before the joinPoint
+```java
+//Executing this advice before executes Conta.creditar method with double argument, and getting valor value.
+@Before(value = "execution(void Conta.creditar(double)) && this(Conta) && args(valor,..))")
+public void before01(JoinPoint joinPoint, double valor) {
+    logger.info("Creditaremos " + valor + " em conta");
+}
+```
+- 1.2 After: executed after the joinPoint
+```java
+//Executing this advice after executes Conta.creditar method with double argument, and getting valor value and object.
+@After(value = "execution(void Conta.creditar(double)) && this(Conta) && args(valor,..) && target(c))")
+	public void point01(JoinPoint joinPoint,  double valor, Conta c) {
+		logger.info("Creditamos " + valor + ". Seu saldo atualizado é " + c.saldo);
+	}
+```
+
+- 1.3 Around:  when the joinPoint are executed
+```java
+//Executing this advice when executes Conta.creditar method with double argument, and getting valor value and object.
+@Around(value = "execution(void Conta.creditar(double)) && this(Conta) && args(valor,..) && target(c))")
+	public void around01(ProceedingJoinPoint joinPoint, double valor, Conta c) throws Throwable {
+		logger.info("Estamos a creditar o valor de " + valor);
+		joinPoint.proceed();
+	}
+
+```
+
+- 1.3 Before:  when any exception triggered
+```java
+//Executing advice for any exception
+	@Before(value = "handler(* *(*))")
+	public void before09(JoinPoint joinPoint) {
+		logger.info("Exception");
+	}
+```
+
+
 ## Install, Build and Running
 
 ### 1. Requiriments

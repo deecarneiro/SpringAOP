@@ -193,7 +193,7 @@ public class ContaAspect {
 //	// 09 Join Point
 //	@Before(value = "handler(* *(*))")
 //	public void before09(JoinPoint joinPoint) {
-//		logger.info("Execption");
+//		logger.info("Exception");
 //	}
 
 //	// Fim do 09 Join Point
